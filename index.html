@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Luca Tramacere - ML and HPC Portfolio</title>
+    <meta name="description" content="Machine learning, research engineering, and high-performance computing portfolio for Luca Tramacere.">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="nav">
+        <a class="brand" href="/">Luca Tramacere</a>
+        <div class="nav-links">
+          <a href="#projects">Projects</a>
+          <a href="https://github.com/trama00">GitHub</a>
+          <a href="https://www.linkedin.com/in/lucatramacere">LinkedIn</a>
+          <a href="mailto:luca.tramacere@gmail.com">Email</a>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="wrap">
+          <p class="eyebrow">ML engineering - research systems - HPC</p>
+          <h1>Early-career ML engineer with research depth and high-performance computing foundations.</h1>
+          <p class="lead">I build model-centric systems from first principles: NLP pipelines, computer-vision models, scientific ML experiments, CUDA/MPI projects, and numerical solvers. This portfolio links the public evidence behind my CV.</p>
+          <div class="actions">
+            <a class="button primary" href="#projects">View projects</a>
+            <a class="button" href="https://github.com/trama00">GitHub profile</a>
+          </div>
+        </div>
+      </section>
+
+      <section id="projects">
+        <div class="wrap">
+          <div class="section-head">
+            <h2>Featured Evidence</h2>
+            <p class="section-note">Projects are grouped by the hiring signal they support: model building, scientific computing, GPU/HPC execution, and research depth.</p>
+          </div>
+          <div class="grid">
+            <article class="card">
+              <h3>Blood Cell Classification - Top 10</h3>
+              <p>Transfer-learning CNN pipeline for eight-class cellular-image classification, reaching 0.94 Codabench accuracy.</p>
+              <div class="meta"><span class="tag">TensorFlow</span><span class="tag">EfficientNetB2</span><span class="tag">Computer Vision</span></div>
+              <a href="https://github.com/trama00/ANN-blood-cells">Repository</a>
+            </article>
+            <article class="card">
+              <h3>Mars Terrain Segmentation - Top 15</h3>
+              <p>Semantic-segmentation project for Mars terrain masks, with U-Net variants, attention modules, and mixed precision.</p>
+              <div class="meta"><span class="tag">Keras</span><span class="tag">U-Net</span><span class="tag">Segmentation</span></div>
+              <a href="https://github.com/trama00/ANN-mars-terrain">Repository</a>
+            </article>
+            <article class="card">
+              <h3>Finite-Difference Navier-Stokes Solver</h3>
+              <p>Distributed C++ solver for 3D incompressible Navier-Stokes with MPI, FFTW, and strong-scaling results.</p>
+              <div class="meta"><span class="tag">C++</span><span class="tag">MPI</span><span class="tag">FFTW</span></div>
+              <a href="https://github.com/trama00/finite-difference-navier-stokes">Repository</a>
+            </article>
+            <article class="card">
+              <h3>Monte Carlo Integration and Option Pricing</h3>
+              <p>Parallel Monte Carlo codebase with C++, OpenMP, CUDA, generic integration, and finance-oriented pricing utilities.</p>
+              <div class="meta"><span class="tag">C++</span><span class="tag">CUDA</span><span class="tag">OpenMP</span></div>
+              <a href="https://github.com/trama00/AMSC-MonteCarlo">Repository</a>
+            </article>
+            <article class="card">
+              <h3>Field Reconstruction</h3>
+              <p>Private research project reconstructing cardiac signal fields from sparse measurements using a CNN encoder-decoder.</p>
+              <div class="meta"><span class="tag">CNN</span><span class="tag">Scientific ML</span><span class="tag">Private repo</span></div>
+              <a href="projects/field-reconstruction.html">Project page</a>
+            </article>
+            <article class="card">
+              <h3>GEMV with CUDA</h3>
+              <p>GPU matrix-vector multiplication optimization project focused on shared memory, access patterns, and thread-level parallelism.</p>
+              <div class="meta"><span class="tag">CUDA</span><span class="tag">GPU kernels</span><span class="tag">HPC</span></div>
+              <a href="projects/gemv-cuda.html">Project page</a>
+            </article>
+            <article class="card">
+              <h3>Wave Equation Solver</h3>
+              <p>Finite-element wave-equation solver with convergence, dissipation, and dispersion studies.</p>
+              <div class="meta"><span class="tag">C++</span><span class="tag">deal.II</span><span class="tag">Numerical PDEs</span></div>
+              <a href="https://github.com/trama00/nmpde-QiaoTramacereWang">Repository</a>
+            </article>
+            <article class="card">
+              <h3>VQE for Ammonia</h3>
+              <p>Quantum-chemistry project estimating NH3 ground-state energy with Qiskit Nature and PennyLane.</p>
+              <div class="meta"><span class="tag">Qiskit</span><span class="tag">PennyLane</span><span class="tag">VQE</span></div>
+              <a href="https://github.com/trama00/VQE-NH3">Repository</a>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap">Based in Italy. Open to ML engineering and research-engineering roles where model work, experiments, and compute matter.</div>
+    </footer>
+  </body>
+</html>
