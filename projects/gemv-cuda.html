@@ -11,23 +11,33 @@
     <main class="wrap">
       <section class="hero">
         <p class="eyebrow">CUDA - GPU optimization</p>
-        <h1>GPU matrix-vector multiplication optimized around memory access patterns.</h1>
-        <p class="lead">Course project focused on practical CUDA implementation choices for GEMV, including shared memory, thread-level parallelism, and CPU/GPU tradeoffs.</p>
+        <h1>GPU matrix-vector multiplication at 30.7x over a naive CPU baseline.</h1>
+        <p class="lead">A 16384 x 16384 matrix-vector product with a cubic term, optimized on a Tesla T4 with shared-memory reduction, vectorisation and loop unrolling. The remaining bottleneck is measured, not guessed.</p>
       </section>
       <section class="project-layout">
         <article>
-          <h2>Overview</h2>
-          <p>The project implemented matrix-vector multiplication on Nvidia GPUs to build practical intuition for CUDA execution. The emphasis was on memory movement, coalescing, shared-memory usage, and how kernel structure affects runtime.</p>
-          <h2>Optimization Focus</h2>
-          <p>The implementation explored thread-level parallelism and shared-memory strategies. The project is useful as evidence of low-level GPU awareness rather than as a public software package.</p>
-          <h2>Public status</h2>
-          <p>No public repository is available today. If the code is recovered, it should be published as a small standalone CUDA repo with build instructions and benchmark tables.</p>
+          <h2>Task</h2>
+          <p>Compute <code>sum_i( A[i][k] * b[k]^3 )</code> for a 16384 x 16384 <code>unsigned char</code> matrix (268 MB) against a 16384-element vector. The matrix does not fit in cache, so the problem is memory bound, not compute bound.</p>
+          <h2>Results</h2>
+          <ul>
+            <li><strong>Naive serial CPU</strong> — 966.72 ms</li>
+            <li><strong>CUDA, two-kernel reduction</strong> — 31.52 ms</li>
+            <li><strong>Speedup</strong> — 30.7x</li>
+          </ul>
+          <p>Measured on an NVIDIA Tesla T4 (40 SMs, 320 GB/s peak memory bandwidth), with the result asserted against the CPU reference. The CPU baseline is a naive single-threaded loop, not BLAS, so the accurate claim is 30.7x over a naive serial implementation.</p>
+          <h2>What made it fast</h2>
+          <p>Thread-local accumulation so partial sums stay in registers; <code>uchar4</code> vectorisation to quarter the number of load instructions; <code>#pragma unroll 8</code> to reduce branches; a shared-memory binary-tree reduction so one value leaves each block; and a second reduction kernel that collapses the per-block partials without using atomics.</p>
+          <h2>What is still wrong</h2>
+          <p>The mapping is one thread per row, so consecutive threads read addresses 16 KB apart and every warp load is uncoalesced. Effective bandwidth measured <strong>8.5 GB/s of a 320 GB/s peak, or 2.7%</strong>. The 30.7x is real but far from the hardware ceiling. The fixes are warp-per-row loads with a shuffle reduction, and precomputing <code>b[k]^3</code> once instead of per element. Both are documented in the repository rather than implemented.</p>
+          <h2>Source</h2>
+          <p>Code, benchmark output and optimisation notes: <a href="https://github.com/trama00/gemv-cuda">github.com/trama00/gemv-cuda</a>.</p>
         </article>
         <aside class="facts">
           <dl>
-            <dt>Stack</dt><dd>CUDA, C/C++, Nvidia GPU programming</dd>
-            <dt>Evidence</dt><dd>Portfolio summary only; no public repo yet</dd>
-            <dt>Hiring signal</dt><dd>Hardware-aware ML/HPC engineering foundation</dd>
+            <dt>Stack</dt><dd>CUDA, C++17, Nvidia T4</dd>
+            <dt>Result</dt><dd>966.72 ms to 31.52 ms, 30.7x</dd>
+            <dt>Evidence</dt><dd><a href="https://github.com/trama00/gemv-cuda">Public repository</a>, benchmark log, optimisation notes</dd>
+            <dt>Hiring signal</dt><dd>Hardware-aware optimisation, profiling discipline, measured bottleneck analysis</dd>
           </dl>
         </aside>
       </section>
